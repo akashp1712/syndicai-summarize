@@ -12,7 +12,7 @@ class PythonPredictor:
       
     def predict(self, payload):
         print(payload)
-        data=json.loads(payload)
+        data = json.loads(payload)
         payload_text = data["text"]
         preprocessed_text = payload_text.strip().replace("\n","")
         t5_prepared_Text = "summarize: " + preprocessed_text
