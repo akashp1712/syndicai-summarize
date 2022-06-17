@@ -9,10 +9,6 @@ class PythonPredictor:
         self.tokenizer = T5Tokenizer.from_pretrained('t5-small')
       
     def predict(self, payload):
-        conditioned_tokens = self.tokenizer.encode(payload["text"]) + [generator.END_OF_TEXT]
-        prediction = generator.generate(self.model, conditioned_tokens, self.device)
-        return self.tokenizer.decode(prediction)
-      
         preprocessed_text = payload["text"].strip().replace("\n","")
         t5_prepared_Text = "summarize: " + preprocessed_text
 
