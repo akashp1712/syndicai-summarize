@@ -10,7 +10,9 @@ class PythonPredictor:
         self.device = torch.device('cpu')
       
     def predict(self, payload):
-        preprocessed_text = payload["text"].strip().replace("\n","")
+        print(payload)
+        payload_text = payload["text"]
+        preprocessed_text = payload_text.strip().replace("\n","")
         t5_prepared_Text = "summarize: " + preprocessed_text
 
         tokenized_text = self.tokenizer.encode(t5_prepared_Text, return_tensors="pt").to(self.device)
