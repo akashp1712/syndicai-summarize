@@ -7,12 +7,13 @@ class PythonPredictor:
     def __init__(self, config):
         self.model = T5ForConditionalGeneration.from_pretrained('t5-small')
         self.tokenizer = T5Tokenizer.from_pretrained('t5-small')
+        self.device = torch.device('cpu')
       
     def predict(self, payload):
         preprocessed_text = payload["text"].strip().replace("\n","")
         t5_prepared_Text = "summarize: " + preprocessed_text
 
-        tokenized_text = self.tokenizer.encode(t5_prepared_Text, return_tensors="pt")
+        tokenized_text = self.tokenizer.encode(t5_prepared_Text, return_tensors="pt").to(self.device)
 
         # summmarize 
         summary_ids = self.model.generate(tokenized_text,
