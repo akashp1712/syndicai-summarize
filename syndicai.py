@@ -1,3 +1,4 @@
+import json
 import torch
 import json 
 from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
@@ -11,7 +12,8 @@ class PythonPredictor:
       
     def predict(self, payload):
         print(payload)
-        payload_text = payload["text"]
+        data=json.loads(payload)
+        payload_text = data["text"]
         preprocessed_text = payload_text.strip().replace("\n","")
         t5_prepared_Text = "summarize: " + preprocessed_text
 
