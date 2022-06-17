@@ -5,8 +5,8 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
 
 class PythonPredictor:
     def __init__(self, config):
-      model = T5ForConditionalGeneration.from_pretrained('t5-small')
-      tokenizer = T5Tokenizer.from_pretrained('t5-small')
+        self.model = T5ForConditionalGeneration.from_pretrained('t5-small')
+        self.tokenizer = T5Tokenizer.from_pretrained('t5-small')
       
     def predict(self, payload):
         conditioned_tokens = self.tokenizer.encode(payload["text"]) + [generator.END_OF_TEXT]
