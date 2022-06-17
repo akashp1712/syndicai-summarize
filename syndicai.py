@@ -12,7 +12,7 @@ class PythonPredictor:
         preprocessed_text = payload["text"].strip().replace("\n","")
         t5_prepared_Text = "summarize: " + preprocessed_text
 
-        tokenized_text = self.tokenizer.encode(t5_prepared_Text, return_tensors="pt").to(device)
+        tokenized_text = self.tokenizer.encode(t5_prepared_Text, return_tensors="pt")
 
         # summmarize 
         summary_ids = self.model.generate(tokenized_text,
