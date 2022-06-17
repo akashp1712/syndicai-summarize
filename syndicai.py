@@ -28,5 +28,5 @@ class PythonPredictor:
                                             early_stopping=True)
 
         summary = self.tokenizer.decode(summary_ids[0], skip_special_tokens=True)    
-        return {'original': payload.text, 'summary': summary}
+        return {'original': payload_text, 'summary': summary}
       
